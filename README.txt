@@ -12,4 +12,6 @@ Directory Contents
 11) prodpop.mat - binaries holding population and wage/age profile used in other scripts.
 12) betahat.mat - binaries which hold guesses for parametrization of aggregate capital.
 
-
+Notes:
+Many of the c++ files use openmp for parallelization.  If your c++ compiler is not openmp compatible, you can comment out all the " #pragma omp parallel for
+" and remove the compiler flag for openmp i.e. mex kss_policy.cpp COMPFLAGS="-Wall $COMPFLAGS";
