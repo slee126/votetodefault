@@ -208,7 +208,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[]){
                         getElements(vo, vo_vec, shock_add1, Ny);
                         double temp1 = ddot(vo_vec, prob_vec, Ny);                          
                         double c_d = (1 + r_d)*k0 + w_d*.33 - kp;
-                        double current_d = c_d > 0 ? util(c_d) + theta*beta*temp0 + (1 - theta)*beta*temp1: -1000.0;
+                        double current_d = c_d > 0 ? util(c_d) + (1-theta)*beta*temp0 + theta*beta*temp1: -1000.0;
 
                         if (current_d > d_colMaxVal){
                             d_colMaxVal = current_d;

@@ -1,6 +1,6 @@
 % clear; close all; clc;
 
-need_guess = 0;
+need_guess = 1;
 compile = 0;
 
 if compile == 1
@@ -22,7 +22,7 @@ alpha = .33;
 beta = .95;
 loss = .96;
 rf = .04;
-theta = .7;
+theta = .3;
 
 pargov = zeros(8, 1);
 pargov(1) = alpha;
@@ -49,7 +49,7 @@ iter = 1;
 par = pargov;
 par(6) = 1.02;
 par(10) = 0;
-grid_slice = [0; 0; 0];
+grid_slice = [0; 5; 17];
 
 aggregateK = transpose(.25:.01:.76);
 %----------------------------------------------------------------------------------------------------------------------
@@ -140,5 +140,5 @@ end
 save -v7.3 run1;
 diary off;
 
-grid_slice = [0; 5; 17]
+grid_slice = [0; 35; 14]
 
