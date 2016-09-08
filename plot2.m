@@ -16,15 +16,26 @@ export_fig plots/defaultset_KS.pdf
 price_mat1 = reshape(price_mat, 25, 15*52);
 figure(2); clf;
 set(2, 'defaulttextinterpreter', 'latex');
-price_slice = reshape(price_mat1(14, :), NbigK, Ny)';
-plot(Z, price_slice(:, 10)); hold on;
+subplot(211)
+price_slice = reshape(price_mat1(13, :), NbigK, Ny)';
 plot(Z, price_slice(:, 20)); hold on;
+plot(Z, price_slice(:, 30)); hold on;
 plot(Z, price_slice(:, 40)); hold on;
 xlabel('Technology Shock');
 ylabel('Bond Price');
 grid on;
 legend({'K=.34', 'K=.44', 'K=.64'}, 'location', 'best', 'Color', 'none', 'box', 'off');
-title('Prices for bond state=-.023', 'FontSize', 16);
+title('Prices for bond state=-.025', 'FontSize', 16);
+subplot(212)
+price_slice = reshape(price_mat1(14, :), NbigK, Ny)';
+% plot(Z, price_slice(:, 35)); hold on;
+% plot(Z, price_slice(:, 45)); hold on;
+plot(Z, price_slice(:, 50)); hold on;
+xlabel('Technology Shock');
+ylabel('Bond Price');
+grid on;
+legend({'K=.64'}, 'location', 'best', 'Color', 'none', 'box', 'off');
+title('Prices for bond state=-.022', 'FontSize', 16);
 set(gcf, 'Color', 'w'); set(gcf, 'Position', [0 0 1200 500]);
 export_fig plots/bondPrice_KS.pdf
 
@@ -84,7 +95,6 @@ for ib_ind = 1:2
             value_d_slice = Value_d_new(:, currentadd_d);
 
             surplus = value_nd_slice - value_d_slice;
-            iyset{i}(counter) = iy;
             inflow_ = inflow(iy*NbigK*Nb + iK*Nb + ib + 1);
             fprintf('surplus sum  %i ib %i iK %i iy %i outflow %1.6f\n', sum(surplus < 0), ib, iK, iy, inflow_);
             if(sum(surplus<0))
@@ -97,7 +107,7 @@ for ib_ind = 1:2
             counter = counter + 1;
         end
 
-        title(sprintf('K=%1.2f D=-%1.2f', aggregateK(iK+1), b_grid(ib)), 'FontSize', 16);
+        title(sprintf('K=%1.2f D=%1.2f', aggregateK(iK+1), b_grid(ib)), 'FontSize', 16);
         grid on;
         legend(label_, 'Location', 'best', 'Color', 'none', 'Box', 'off');
         xlabel('$$k_t$$');
